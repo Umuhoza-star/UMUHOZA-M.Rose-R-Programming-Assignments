@@ -1,0 +1,73 @@
+##Creating the Assignment structure
+---
+title: "Data Import and R Packages"
+author: "Marie Rose UMUHOZA"
+Student ID: 20252MBI061
+date: "2026-10-31"
+output: html_document
+---
+# 1. Introduction
+
+R is a programming language used for data
+analysis, statistical computing, and data
+visualization.
+
+# 2. Installing and Loading Packages
+R packages are collections of functions, datasets, and tools that extend the capabilities of R. They help users perform different tasks, such as importing data, cleaning data, statistical analysis, and visualization.
+
+```{r}
+# Install required packages
+
+install.packages(c(
+  "tidyverse",
+  "readxl",
+  "jsonlite",
+  "DBI",
+  "haven"
+))
+```
+# load the package
+
+```{r}
+# Load the required packages
+
+library(tidyverse)
+library(readxl)
+library(jsonlite)
+library(DBI)
+library(haven)
+```
+install.packages("RSQLite")
+library(RSQLite)
+#Vector 
+marks<-c(20,35,32,29)
+summary(marks)
+mean(marks)
+# Create a sample student dataset
+
+students <- data.frame(
+  StudentID = c(1, 2, 3, 4, 5),
+  Name = c("Aline", "Rose", "Eric", "Jean", "Marie"),
+  Age = c(22, 24, 21, 23, 25),
+  Marks = c(75, 85, 68, 90, 80)
+)
+
+# Export the dataset to CSV
+
+write.csv(students, "students.csv", row.names = FALSE)
+
+# Import the CSV file
+
+data_csv <- read.csv("students.csv")
+
+# Display the imported data
+
+print(data_csv)
+
+# Display the first six rows
+
+head(data_csv)
+
+# Check the structure
+
+str(data_csv)

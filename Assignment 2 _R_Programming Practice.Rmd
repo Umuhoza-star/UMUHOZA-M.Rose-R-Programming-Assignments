@@ -1,0 +1,344 @@
+---
+title: "R Programming Practical Exercises"
+author: "Marie Rose UMUHOZA"
+date: "2026-10-31"
+output: html_document
+---
+# 1. Introduction
+
+This assignment focuses on practising R programming commands and techniques covered during class. It demonstrates the use of data structures, data exploration, descriptive statistics, data visualization, linear models, and data management.
+
+# 2. Basic R Operations
+
+# 3. Data Structures in R
+
+## 3.1 Vectors
+
+## 3.2 Factors
+
+## 3.3 Matrices
+
+## 3.4 Lists
+
+## 3.5 Data Frames
+
+# 4. Missing Values
+
+# 5. Data Exploration and Descriptive Statistics
+
+# 6. Data Visualization
+
+## 6.1 Histogram
+
+## 6.2 Boxplot
+
+## 6.3 Bar Chart
+
+## 6.4 Scatter Plot
+
+# 7. Relationships and Correlation
+
+# 8. Linear Regression Models
+
+# 9. Data Management
+
+## 9.1 Creating New Variables
+
+## 9.2 Calculating BMI
+
+## 9.3 Working with Dates
+
+## 9.4 Subsetting and Sorting Data
+
+## 9.5 Handling Missing Values
+
+## 9.6 Merging Datasets
+
+# 10. Conclusion
+#1.Basic R Operations
+# Addition
+10 + 5
+
+# Subtraction
+10 - 5
+
+# Multiplication
+10 * 5
+
+# Division
+10 / 5
+
+# Exponentiation
+2^3
+
+# Square root
+sqrt(25)
+# Numeric vector
+age <- c(20, 35, 32, 29)
+
+# Display the vector
+age
+
+# Calculate the average age
+mean(age)
+
+# Calculate the summary
+summary(age)
+# Character vector
+names <- c("Aline", "Rose", "Eric", "Jean")
+
+# Logical vector
+results <- c(TRUE, FALSE, TRUE, TRUE)
+
+# Integer vector
+numbers <- 9:29
+
+# Display the vectors
+names
+results
+numbers
+#Factors
+A factor is a data structure used to store categorical variables. Factors are useful when working with data that contains different categories or groups.
+# Create a gender factor
+gender <- factor(c("Male", "Female", "Male",
+                   "Female", "Female"))
+
+# Display the factor
+gender
+
+# Display the levels
+levels(gender)
+
+# Count observations in each category
+table(gender)
+
+# Check the structure
+str(gender)
+# Create an ordered factor
+education <- factor(
+  c("Primary", "University", "Secondary",
+    "University", "Primary"),
+  levels = c("Primary", "Secondary", "University"),
+  ordered = TRUE
+)
+
+# Display the factor
+education
+
+# Check the levels
+levels(education)
+#Create a matrix
+A matrix is a two-dimensional data structure that stores elements of the same data type in rows and columns.
+# Create a matrix
+marks <- matrix(
+  c(75, 80, 85, 90, 70, 95),
+  nrow = 2,
+  ncol = 3
+)
+
+# Display the matrix
+marks
+
+# Display the dimensions
+dim(marks)
+
+# Display the number of rows
+nrow(marks)
+
+# Display the number of columns
+ncol(marks)
+#Access elements in a matrix
+# Access the first row
+marks[1, ]
+
+# Access the second column
+marks[, 2]
+
+# Access the element in row 1, column 2
+marks[1, 2]
+
+# Calculate the total of all marks
+sum(marks)
+#Create a list
+A list is a data structure that can store different types of elements, including numbers, characters, vectors, and other data structures.
+# Create a student list
+
+student <- list(
+  Name = "Marie",
+  Age = 25,
+  Marks = c(75, 85, 90),
+  Passed = TRUE
+)
+
+# Display the list
+student
+
+# Display the structure
+str(student)
+#Access elements in a list
+# Access the student's name
+student$Name
+
+# Access the student's age
+student$Age
+
+# Access examination marks
+student$Marks
+
+# Calculate average marks
+mean(student$Marks)
+
+# Access the first element
+student[[1]]
+#Create a data frame
+# Create a student data frame
+
+students <- data.frame(
+  StudentID = c(1, 2, 3, 4, 5, 6),
+  Name = c("Aline", "Rose", "Eric", "Jean", "Marie", "Peter"),
+  Age = c(22, 24, 21, 23, 25, 26),
+  Gender = c("Female", "Female", "Male",
+             "Male", "Female", "Male"),
+  Marks = c(75, 85, 68, 90, 80, 72)
+)
+
+# Display the dataset
+students
+#Explore the data frame
+# Display the first six rows
+head(students)
+
+# Display the last six rows
+tail(students)
+
+# Display the structure
+str(students)
+
+# Generate descriptive summary
+summary(students)
+
+# Check the dimensions
+dim(students)
+
+# Display column names
+names(students)
+
+# Count the number of rows
+nrow(students)
+
+# Count the number of columns
+ncol(students)
+#Select columns from a data frame
+# Select the Name column
+students$Name
+
+# Select Name and Marks columns
+students[, c("Name", "Marks")]
+
+# Select the first three columns
+students[, 1:3]
+# Filter rows
+# Select students who scored 80 or above
+
+high_performers <- students[students$Marks >= 80, ]
+
+# Display the result
+high_performers\
+#Add a new column
+students$Status <- ifelse(
+  students$Marks >= 50,
+  "Pass",
+  "Fail"
+)
+
+# Display updated dataset
+students
+# Calculate average marks
+mean(students$Marks)
+
+# Calculate highest marks
+max(students$Marks)
+
+# Calculate lowest marks
+min(students$Marks)
+
+# Calculate standard deviation
+sd(students$Marks)
+#Practise using dplyr
+packa
+library(dplyr)
+# Select specific columns
+students %>%
+  select(Name, Marks)
+
+# Filter students with marks above 75
+students %>%
+  filter(Marks > 75)
+
+# Arrange students from highest to lowest marks
+students %>%
+  arrange(desc(Marks))
+
+# Calculate average marks
+students %>%
+  summarise(Average_Marks = mean(Marks))
+  students %>%
+  filter(Marks > 75) %>%
+  arrange(desc(Marks))
+#Missing Values in R
+# Create a dataset with missing values
+students_missing <- data.frame(
+  StudentID = 1:6,
+  Name = c("Aline", "Rose", "Eric", "Jean", "Marie", "Peter"),
+  Age = c(22, NA, 21, 23, NA, 26),
+  Marks = c(75, 85, NA, 90, 80, NA)
+)
+
+# Display the dataset
+students_missing
+#Identify missing values
+is.na(students_missing)
+#Count missing values
+# Count all missing values
+sum(is.na(students_missing))
+
+# Count missing values in each column
+colSums(is.na(students_missing))
+# Data Exploration and Descriptive Statistics in R.
+##Calculate descriptive statistics separately
+# Calculate the mean marks
+mean(students$Marks)
+
+# Calculate the median marks
+median(students$Marks)
+
+# Calculate the standard deviation
+sd(students$Marks)
+
+# Find the minimum marks
+min(students$Marks)
+
+# Find the maximum marks
+max(students$Marks)
+
+# Calculate the range of marks
+range(students$Marks)
+# Count the number of students
+nrow(students)
+
+# Count the number of columns
+ncol(students)
+
+# Count students by gender
+table(students$Gender)
+library(dplyr)
+
+students %>%
+  summarise(
+    Total_Students = n(),
+    Average_Age = mean(Age),
+    Average_Marks = mean(Marks),
+    Highest_Marks = max(Marks),
+    Lowest_Marks = min(Marks),
+    SD_Marks = sd(Marks)
+  )

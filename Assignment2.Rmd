@@ -1,0 +1,129 @@
+---
+title: "Assignment2"
+author: "Marie Rose UMUHOZA"
+date: "2026-10-31"
+output: html_document
+---
+
+```{r cars}
+summary(cars)
+```
+#Data Structure
+```{r}
+#Numeric data
+x <- c(0.5, 0.6) 
+age<-c(20,35,32,29)
+summary(age)
+```
+#Logical
+```{r}
+x <- c(TRUE,FALSE)
+x <- c(T, F)
+```
+#Character
+```{r}
+x <- c("a", "b", "c" )
+class<-c("M","F","F","M")
+```
+#Integer
+```{r}
+x <- 9:29 
+```
+#Complex
+```{r}
+x <- c(1+0i, 2+4i)
+```
+#Matrix and operation within matrices
+```{r}
+(x<- matrix(1:6, nrow = 2, ncol = 3))
+```
+```{r}
+x
+```
+```{r}
+(y<-matrix(1:6, nrow = 3, ncol = 2))
+```
+```{r}
+(x<- matrix(1:6, nrow = 2, ncol = 3))
+```
+```{r}
+x%*%y
+```
+#List
+```{r}
+(x <- list(1, "a", TRUE, 1 + 4i))
+```
+#Factor
+```{r}
+x <- factor(c("yes", "yes", "no", "yes", "no"))
+```
+#Create a vector with NAs in it
+```{r}
+x <- c(1, 2, NA, 10, 3)
+is.na(x)
+```
+```{r}
+x <- c(1, 2, 4, "NA", 5)  
+bad <- is.na(x)  
+print(bad)
+```
+```{r}
+x[!bad]
+```
+```{r}
+x <- c(1, 2, NA, 4, NA, 5) 
+y <- c("a", "b", NA, "d", NA, "f")  
+good <- complete.cases(x, y)  
+good
+```
+#Coercion`
+```{r}
+sum(c(TRUE,TRUE,FALSE,FALSE,FALSE))
+```
+# Create data
+##create a data frame
+```{r}
+studentID<-c(1,2,3,4,5)
+math_score<-c(12,17,10,9,NA)
+gender<-c("M","F","M","M","F")
+it_score<-c(13,18,11,10,19)
+scoredata<-data.frame(studentID,gender,math_score,it_score)
+scoredata
+```
+View(scoredata)
+#create Data
+install.packages("readxl")
+library(readxl)
+
+mydata <- read_excel("C:\AUCA\Data_Class.xlsx")
+
+# Display the data
+print(mydata)
+
+# Open data in spreadsheet view
+View(mydata)
+mydata <- read_excel("C:\\AUCA\\Data_Class.xlsx")
+
+# Display the dataset
+mydata
+# Display the first six rows
+head(mydata)
+tail(mydata)
+mydata[10:20,]
+summary(mydata$WEIGHT)
+length(mydata$WEIGHT)
+# Data Visualization Using ggplot2
+# Install and load ggplot2
+install.packages("ggplot2")
+library(ggplot2)
+ggplot(mydata, aes(x = Age)) +
+  geom_histogram(
+    binwidth = 5,
+    fill = "skyblue",
+    color = "black"
+  ) +
+  labs(
+    title = "Distribution of Age",
+    x = "Age",
+    y = "Frequency"
+  )
