@@ -1,0 +1,242 @@
+---
+title: "Assignment2"
+author: "Marie Rose UMUHOZA"
+date: "2026-10-31"
+output: html_document
+---
+
+```{r cars}
+summary(cars)
+```
+#Data Structure
+```{r}
+#Numeric data
+x <- c(0.5, 0.6) 
+age<-c(20,35,32,29)
+summary(age)
+```
+#Logical
+```{r}
+x <- c(TRUE,FALSE)
+x <- c(T, F)
+```
+#Character
+```{r}
+x <- c("a", "b", "c" )
+class<-c("M","F","F","M")
+```
+#Integer
+```{r}
+x <- 9:29 
+```
+#Complex
+```{r}
+x <- c(1+0i, 2+4i)
+```
+#Matrix and operation within matrices
+```{r}
+(x<- matrix(1:6, nrow = 2, ncol = 3))
+```
+```{r}
+x
+```
+```{r}
+(y<-matrix(1:6, nrow = 3, ncol = 2))
+```
+```{r}
+(x<- matrix(1:6, nrow = 2, ncol = 3))
+```
+```{r}
+x%*%y
+```
+#List
+```{r}
+(x <- list(1, "a", TRUE, 1 + 4i))
+```
+#Factor
+```{r}
+x <- factor(c("yes", "yes", "no", "yes", "no"))
+```
+#Create a vector with NAs in it
+```{r}
+x <- c(1, 2, NA, 10, 3)
+is.na(x)
+```
+```{r}
+x <- c(1, 2, 4, "NA", 5)  
+bad <- is.na(x)  
+print(bad)
+```
+```{r}
+x[!bad]
+```
+```{r}
+x <- c(1, 2, NA, 4, NA, 5) 
+y <- c("a", "b", NA, "d", NA, "f")  
+good <- complete.cases(x, y)  
+good
+```
+#Coercion`
+```{r}
+sum(c(TRUE,TRUE,FALSE,FALSE,FALSE))
+```
+# Create data
+##create a data frame
+```{r}
+studentID<-c(1,2,3,4,5)
+math_score<-c(12,17,10,9,NA)
+gender<-c("M","F","M","M","F")
+it_score<-c(13,18,11,10,19)
+scoredata<-data.frame(studentID,gender,math_score,it_score)
+scoredata
+```
+View(scoredata)
+#create Data
+#install.packages("readxl")
+#library(readxl)
+install.packages("readxl", type = "binary")
+library(readxl)
+mydata <- read_excel("C:/AUCA/Data_Class.xlsx")
+
+# Display the data
+View(mydata)
+
+#understanding mydata
+head(mydata)
+tail(mydata)
+summary(mydata)
+summary(mydata$Weight)
+length(mydata$Weight)
+# Data Visualization Using ggplot2
+# Install and load ggplot2
+install.packages("ggplot2")
+library(ggplot2)
+w <- mydata[, c("Weight", "Height")]
+View(w)
+hist(w$Weight)
+plot(w$Weight,w$Height,
+main="Student data",
+xlab="Weight",
+ylab="Height")
+boxplot(w$Weight, w$Height,
+        names = c("Weight", "Height"),
+        main = "Student Weight and Height",
+        col = c("skyblue", "lightgreen"),
+        ylab = "Values")
+#Find Missing variable
+is.na(mydata)
+# Filling missing values
+alldata <- mydata
+alldata[is.na(alldata)] <- 99
+
+# View updated dataset
+```{r}
+View(alldata)
+```
+View(alldata)
+mydata[10:18,]
+```{r}
+mydata[,-1]
+```
+```{r}
+data() # list of datasets currently available 
+data("airquality")
+variable.names(airquality)
+```
+```{r}
+str(airquality)
+```
+```{r}
+mydata
+```
+```{r}
+summary(mydata)
+```
+```{r}
+str(mydata)
+```
+```{r}
+apply(mydata,1,mean)
+```
+```{r}
+apply(mydata,2,sd)
+```
+```{r}
+c(mean(mydata$Height),sd(mydata$Height))
+```
+```{r}
+c(mean(mydata$Weight),sd(mydata$WEIGHT))
+```
+```{r}
+apply(mydata,1,mean)
+```
+```{r}
+data("iris")
+head(iris)
+```
+```{r}
+mean(iris$Petal.Length)
+```
+```{r}
+mean(iris$Petal.Length[iris$Species=="setosa"])
+```
+```{r}
+mean(iris$Petal.Length[iris$Species=="versicolor"])
+```
+```{r}
+mean(iris$Petal.Length[iris$Species=="virginica"])
+```
+```{r}
+by(iris$Petal.Length,iris$Species,mean)
+```
+```{r}
+by(iris$Petal.Length,iris$Species,sd)
+```
+```{r}
+by(iris$Petal.Length,iris$Species,summary)
+```
+```{r}
+boxplot(iris$Sepal.Length~iris$Species,data=iris, main="Comparison of categorical vs quantitative")
+```
+```{r}
+ucba<-data.frame(UCBAdmissions)
+head(ucba)
+```
+```{r}
+cross<-xtabs(Freq~Gender+Admit,data=ucba)
+(cross<-xtabs(Freq~Gender+Admit,data=ucba))
+```
+```
+#Bar Chart
+```{r}
+dat <- read.table(text ="ProdA ProdB ProdC ProdD
+1 110 50 60 70 
+2 120 50 80 65", header= TRUE)
+
+barplot(as.matrix(dat),beside=TRUE,col=c("yellow","red"))
+```
+#Barplot
+dat <- read.table(text = "A B C D E F G
+1 10 80 30 90 70 60 90
+2 20 50 70 50 40 10 40
+3 60 80 80 60 60 30 160
+4 20 40 70 80 20 10 70",
+header = TRUE)
+
+barplot(as.matrix(dat))
+Scatter plot
+```{r}
+plot(Weight~Height,data=mydata)
+```
+```{r}
+plot(mydata$Height,mydata$Weight)
+```
+
+```{r}
+plot(mydata[,1],mydata[,2],main = "Graph")
+```
+
+```{r}
+plot(Weight~Height,data=mydata)
+abline(lm(Weight~Height,data=data_class)$coefficient)
+```
